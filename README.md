@@ -53,6 +53,10 @@ A subdomain scaner
 
 5. 运行结束后,会统计扫描了哪些信息,这里我们使用的字典只有50条,但在扫描的时候会把[http://subdomain.domain和https](https://gitee.com/link?target=http%3A%2F%2Fsubdomain.xn--domainhttps-d14s)/subdomain.domain都考虑到,如果[http://subdomain.domain被扫描到了](https://gitee.com/link?target=http%3A%2F%2Fsubdomain.xn--domain-8e8i73wop3bz5ctz4l),就不会再扫描[https://subdomain.domain](https://gitee.com/link?target=https%3A%2F%2Fsubdomain.domain),这样能够提高效率: 
 
+   ![](photos/Snipaste_2025-02-25_09-48-02.png)
+
+   运行完成后,会统计扫描信息:
+
    ![输入图片说明](photos/41fae9e9_10823455.png)
 
 6. 最终,会将扫描到的子域名保存到found.txt中,将报错的子域名和报错信息保存到error.txt中,将没找到的子域名保存到notFound.txt中
