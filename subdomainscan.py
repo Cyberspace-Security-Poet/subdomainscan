@@ -120,7 +120,7 @@ async def check_subdomain(session, domain_name, sub, proxy_http, proxy_https, co
             counter['checked'] += 1
             counter['errors'] += 1
             error_content = f"[!] Error checking {sub}.{domain_name} via HTTPS: {e}"
-            print(type(error_content))
+            # print(type(error_content))
             write_content_to_file('error.txt', error_content)
             # traceback.print_exc()
 
