@@ -3,18 +3,17 @@
 
 import sys
 import asyncio
-from aiohttp_socks import ProxyConnector
-import traceback
+import os
 import aiohttp
 from aiohttp import ClientTimeout
 
-def update_account_info(file_path, key, new_value):
+def update_account_info(account_file, key, new_value):
     """更新账户配置信息"""
     try:
-        with open(file_path, 'r') as file:
+        with open(account_file, 'r') as file:
             lines = file.readlines()
 
-        with open(file_path, 'w') as file:
+        with open(account_file, 'w') as file:
             for line in lines:
                 if line.startswith(f"{key}:"):
                     line = f"{key}:{new_value}\n"
@@ -22,19 +21,19 @@ def update_account_info(file_path, key, new_value):
     except Exception as e:
         print(f"Error updating {key} in file: {e}")
 
-def modify_account_info(file_path):
+def modify_account_info(account_file):
     """修改账户信息"""
-    update_account_info(file_path, 'username', input("请输入你的快代理账号: "))
-    update_account_info(file_path, 'password', input("请输入你的快代理密码: "))
-    update_account_info(file_path, 'host', input("请输入你的快代理HOST: "))
-    update_account_info(file_path, 'http_port', input("请输入你的HTTP端口: "))
+    update_account_info(account_file, 'username', input("请输入你的快代理账号: "))
+    update_account_info(account_file, 'password', input("请输入你的快代理密码: "))
+    update_account_info(account_file, 'host', input("请输入你的快代理HOST: "))
+    update_account_info(account_file, 'http_port', input("请输入你的HTTP端口: "))
     print("Configuration updated successfully.")
 
-def get_agent(file_path):
+def get_agent(account_file):
     """读取代理配置文件并返回代理信息"""
     config = {}
     try:
-        with open(file_path, 'r') as file:
+        with open(account_file, 'r') as file:
             for line in file:
                 line = line.strip()
                 if line:
@@ -84,17 +83,22 @@ async def check_subdomain(session, domain_name, sub, proxy_http, proxy_https, co
         async with session.get(url1, proxy=proxy_http, allow_redirects=False, timeout=timeout) as response:
             counter['checked'] += 1
             if response.status == 200:
-                print("[+] Found:" + "http://" + f"{sub}.{domain_name}")
+                # print("[+] Found:" + "http://" + f"{sub}.{domain_name}")
                 counter['found'] += 1
                 http_success = True
                 counter['http_geted so https_passed'] += 1
+                found = "http://" + f"{sub}.{domain_name}"
+                write_content_to_file('founded.txt',found)
             else:
-                print("[-] " + "http://" + f"{sub}.{domain_name} returned status code: {response.status}")
+                # print("[-] " + "http://" + f"{sub}.{domain_name} returned status code: {response.status}")
                 counter['notFound'] += 1
+                notFound = "http://" + f"{sub}.{domain_name} returned status code: {response.status}"
+                write_content_to_file('notFound.txt',notFound)
     except Exception as e:
         counter['checked'] += 1
         counter['errors'] += 1
-        print(f"[!] Error checking {sub}.{domain_name} via HTTP: {e}")
+        error_content = f"[!] Error checking {sub}.{domain_name} via HTTPS: {e}"
+        write_content_to_file('error.txt', error_content)
         # traceback.print_exc()
 
     # 如果 HTTP 检查成功，可以跳过 HTTPS 请求
@@ -103,15 +107,21 @@ async def check_subdomain(session, domain_name, sub, proxy_http, proxy_https, co
             async with session.get(url2, proxy=proxy_https, allow_redirects=False, timeout=timeout) as response:
                 counter['checked'] += 1
                 if response.status == 200:
-                    print("[+] Found:" + "https://" + f"{sub}.{domain_name}")
+                    # print("[+] Found:" + "https://" + f"{sub}.{domain_name}")
+                    found = "https://" + f"{sub}.{domain_name}"
                     counter['found'] += 1
+                    write_content_to_file('founded.txt', found)
                 else:
-                    print("[-] " + "https://" + f"{sub}.{domain_name} returned status code: {response.status}")
+                    # print("[-] " + "https://" + f"{sub}.{domain_name} returned status code: {response.status}")
+                    notFound = "https://" + f"{sub}.{domain_name} returned status code: {response.status}"
                     counter['notFound'] += 1
+                    write_content_to_file('notFound.txt', notFound)
         except Exception as e:
             counter['checked'] += 1
             counter['errors'] += 1
-            print(f"[!] Error checking {sub}.{domain_name} via HTTPS: {e}")
+            error_content = f"[!] Error checking {sub}.{domain_name} via HTTPS: {e}"
+            print(type(error_content))
+            write_content_to_file('error.txt', error_content)
             # traceback.print_exc()
 
 
@@ -134,31 +144,49 @@ async def scan_subdomains(sub_dom, domain_name, proxy_http, proxy_https):
     print(f"6、total checked: {int(counter['http_geted so https_passed'])} + {int(counter['checked'])} = {int(counter['http_geted so https_passed']) + int(counter['checked'])}")
 
 
-def load_subdomains(file_path):
+def load_subdomains(account_file):
     """加载子域名列表"""
     try:
-        with open(file_path) as file:
+        with open(account_file) as file:
             sub_name = file.read()
             return sub_name.splitlines()
     except Exception as e:
         print(f"Error loading subdomains from file: {e}")
         return []
 
+def clear_file(file_path):
+    # 使用 'w' 模式打开文件会清空文件内容
+    with open(file_path, 'w') as file:
+        pass
+
+def write_content_to_file(file_path, content):
+    # 将返回的内容写入文件
+    if os.access(file_path, os.W_OK):
+        with open(file_path, 'a') as file:
+            file.write(str(content) + '\n')
+    else:
+        print(f"Error: No write permission for {file_path}")
+
 if __name__ == '__main__':
     """Windows 平台使用 SelectorEventLoop"""
     if sys.platform == 'win32':
         asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
 
-    file_path = '快代理账户信息.txt'
+    # 每次运行前清空这三个文件
+    file_paths = ['founded.txt', 'notFound.txt', 'error.txt']
+    for path in file_paths:
+        clear_file(path)
+
+    account_file = '快代理账户信息.txt'
     choice = input("Do you need to change your account information? Please enter: y or n\n")
 
     if choice == "y":
-        modify_account_info(file_path)
+        modify_account_info(account_file)
 
     subdomains = load_subdomains("dictionary.txt")
     if subdomains:
         domain_name = input("Enter the domain name: ")
-        proxies = get_agent(file_path)
+        proxies = get_agent(account_file)
 
         if proxies:
             asyncio.run(scan_subdomains(subdomains, domain_name, proxies.get('http'), proxies.get('https')))
