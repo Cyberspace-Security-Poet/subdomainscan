@@ -1,0 +1,10 @@
+http://www.baidu.com
+http://m.baidu.com
+http://www2.baidu.com
+http://images.baidu.com
+http://wap.baidu.com
+http://www1.baidu.com
+https://news.baidu.com
+http://mobile.baidu.com
+https://image.baidu.com
+https://test.baidu.com

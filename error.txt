@@ -1,0 +1,33 @@
+[!] Error checking mail2.baidu.com via HTTPS: 446, message='Host DNS Failed', url='http://t14036101438573:fuecavvk@m244.kdltps.com:15818/'
+[!] Error checking admin.baidu.com via HTTPS: 446, message='Host DNS Failed', url='http://t14036101438573:fuecavvk@m244.kdltps.com:15818/'
+[!] Error checking shop.baidu.com via HTTPS: 446, message='Host DNS Failed', url='http://t14036101438573:fuecavvk@m244.kdltps.com:15818/'
+[!] Error checking www3.baidu.com via HTTPS: 446, message='Host DNS Failed', url='http://t14036101438573:fuecavvk@m244.kdltps.com:15818/'
+[!] Error checking forum.baidu.com via HTTPS: 446, message='Host DNS Failed', url='http://t14036101438573:fuecavvk@m244.kdltps.com:15818/'
+[!] Error checking sms.baidu.com via HTTPS: 446, message='Host DNS Failed', url='http://t14036101438573:fuecavvk@m244.kdltps.com:15818/'
+[!] Error checking ddrint.baidu.com via HTTPS: 446, message='Host DNS Failed', url='http://t14036101438573:fuecavvk@m244.kdltps.com:15818/'
+[!] Error checking webmail.baidu.com via HTTPS: 446, message='Host DNS Failed', url='http://t14036101438573:fuecavvk@m244.kdltps.com:15818/'
+[!] Error checking ftp.baidu.com via HTTPS: 446, message='Host DNS Failed', url='http://t14036101438573:fuecavvk@m244.kdltps.com:15818/'
+[!] Error checking beta.baidu.com via HTTPS: 446, message='Host DNS Failed', url='http://t14036101438573:fuecavvk@m244.kdltps.com:15818/'
+[!] Error checking ads.baidu.com via HTTPS: 446, message='Host DNS Failed', url='http://t14036101438573:fuecavvk@m244.kdltps.com:15818/'
+[!] Error checking origin.baidu.com via HTTPS: 446, message='Host DNS Failed', url='http://t14036101438573:fuecavvk@m244.kdltps.com:15818/'
+[!] Error checking localhost.baidu.com via HTTPS: 446, message='Host DNS Failed', url='http://t14036101438573:fuecavvk@m244.kdltps.com:15818/'
+[!] Error checking conc.baidu.com via HTTPS: 446, message='Host DNS Failed', url='http://t14036101438573:fuecavvk@m244.kdltps.com:15818/'
+[!] Error checking blog.baidu.com via HTTPS: 446, message='Host DNS Failed', url='http://t14036101438573:fuecavvk@m244.kdltps.com:15818/'
+[!] Error checking marketing.baidu.com via HTTPS: 446, message='Host DNS Failed', url='http://t14036101438573:fuecavvk@m244.kdltps.com:15818/'
+[!] Error checking blogs.baidu.com via HTTPS: 446, message='Host DNS Failed', url='http://t14036101438573:fuecavvk@m244.kdltps.com:15818/'
+[!] Error checking search.baidu.com via HTTPS: 446, message='Host DNS Failed', url='http://t14036101438573:fuecavvk@m244.kdltps.com:15818/'
+[!] Error checking new.baidu.com via HTTPS: 446, message='Host DNS Failed', url='http://t14036101438573:fuecavvk@m244.kdltps.com:15818/'
+[!] Error checking smtp.baidu.com via HTTPS: 446, message='Host DNS Failed', url='http://t14036101438573:fuecavvk@m244.kdltps.com:15818/'
+[!] Error checking tv.baidu.com via HTTPS: 446, message='Host DNS Failed', url='http://t14036101438573:fuecavvk@m244.kdltps.com:15818/'
+[!] Error checking secure.baidu.com via HTTPS: 446, message='Host DNS Failed', url='http://t14036101438573:fuecavvk@m244.kdltps.com:15818/'
+[!] Error checking services.baidu.com via HTTPS: 446, message='Host DNS Failed', url='http://t14036101438573:fuecavvk@m244.kdltps.com:15818/'
+[!] Error checking mail2.baidu.com via HTTPS: 446, message='Host DNS Failed', url='http://t14036101438573:fuecavvk@m244.kdltps.com:15818/'
+[!] Error checking video.baidu.com via HTTPS: Cannot connect to host video.baidu.com:443 ssl:True [SSLCertVerificationError: (1, "[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for 'video.baidu.com'. (_ssl.c:1125)")]
+[!] Error checking mail.baidu.com via HTTPS: Cannot connect to host mail.baidu.com:443 ssl:True [SSLCertVerificationError: (1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1125)')]
+[!] Error checking media.baidu.com via HTTPS: Connection timeout to host https://media.baidu.com
+[!] Error checking music.baidu.com via HTTPS: Connection timeout to host https://music.baidu.com
+[!] Error checking ns2.baidu.com via HTTPS: Connection timeout to host https://ns2.baidu.com
+[!] Error checking dns.baidu.com via HTTPS: Connection timeout to host https://dns.baidu.com
+[!] Error checking ns3.baidu.com via HTTPS: Connection timeout to host https://ns3.baidu.com
+[!] Error checking dns1.baidu.com via HTTPS: Connection timeout to host https://dns1.baidu.com
+[!] Error checking ns1.baidu.com via HTTPS: Connection timeout to host https://ns1.baidu.com
